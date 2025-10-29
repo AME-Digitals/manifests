@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: store
+spec:
+  selector:
+    app: store
+  ports:
+    - name: store-svc-port
+      protocol: TCP
+      port: 80
+      targetPort: 3000
