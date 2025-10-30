@@ -14,8 +14,6 @@ spec:
       labels:
         app: store
     spec:
-      imagePullSecrets:
-        - name: xdew-pull-secret
       containers:
         - name: store
           image: ghcr.io/ame-digitals/store:1.0.0
