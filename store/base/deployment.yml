@@ -25,11 +25,11 @@ spec:
                 name: store-secrets
           resources:
             requests:
-              cpu: 15m
-              memory: 105M
+              cpu: 25m
+              memory: 250Mi
             limits:
-              cpu: 15m
-              memory: 105M
+              cpu: 25m
+              memory: 250Mi
           readinessProbe:
             tcpSocket:
               port: 3000
