@@ -4,8 +4,6 @@ metadata:
   name: store
 spec:
   replicas: 1
-  strategy:
-    type: Recreate  # Changed from RollingUpdate to Recreate because of SQLite PVC
   selector:
     matchLabels:
       app: store
