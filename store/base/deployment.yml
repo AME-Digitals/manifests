@@ -14,16 +14,16 @@ spec:
     spec:
       containers:
         - name: store
-          image: ghcr.io/ame-digitals/store:1.9.0
+          image: ghcr.io/ame-digitals/store:2.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://bgmsa:changeme123@postgres:5432/bgmsa"
           envFrom:
             - secretRef:
                 name: store-secrets
-          volumeMounts:
-            - name: store-data
-              mountPath: /app/data
           resources:
             requests:
               cpu: 25m
@@ -40,7 +40,3 @@ spec:
               port: 3000
             initialDelaySeconds: 15
             timeoutSeconds: 5
-      volumes:
-        - name: store-data
-          persistentVolumeClaim:
-            claimName: store-data

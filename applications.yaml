@@ -1,0 +1,57 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: store-prod
+  namespace: amedp-store
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/ame-digitals/manifests.git
+        revision: main
+        directories:
+          - path: "store/overlays/prod"
+  template:
+    metadata:
+      name: "{{path[0]}}"
+    spec:
+      project: amed
+      source:
+        repoURL: https://github.com/ame-digitals/manifests.git
+        targetRevision: main
+        path: "{{path}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "amedp-store"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: store-test
+  namespace: amedt-store
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/ame-digitals/manifests.git
+        revision: main
+        directories:
+          - path: "store/overlays/test"
+  template:
+    metadata:
+      name: "{{path[0]}}"
+    spec:
+      project: amed
+      source:
+        repoURL: https://github.com/ame-digitals/manifests.git
+        targetRevision: main
+        path: "{{path}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "amedt-store"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
