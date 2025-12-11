@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: store
-          image: ghcr.io/ame-digitals/store:2.1.8
+          image: ghcr.io/ame-digitals/store:2.1.9
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
